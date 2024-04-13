@@ -1,10 +1,10 @@
-<p style="color: green"><%= notice %></p>
+<div class="jumbotron">
+  <h1 class="display-4"><%= @friendspass.first_name %> <%= @friendspass.last_name %></h1>
+  <hr class="my-4">
+  <p><%= @friendspass.email %> | <%= @friendspass.phone %> | <%= @friendspass.twitter %></p>
+  <%= link_to "Edit this friendspass", edit_friendspass_path(@friendspass), class:"btn btn-secondary" %> 
+  <%= link_to "Back to friendspasses", friendspasses_path, class:"btn btn-dark" %>
 
-<%= render @friendspass %>
-
-<div>
-  <%= link_to "Edit this friendspass", edit_friendspass_path(@friendspass) %> |
-  <%= link_to "Back to friendspasses", friendspasses_path %>
-
-  <%= button_to "Destroy this friendspass", @friendspass, method: :delete %>
+  <%= button_to "Destroy this friendspass", @friendspass, method: :delete, class:"my-4 btn btn-danger" %>
 </div>
+

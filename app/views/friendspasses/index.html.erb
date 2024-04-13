@@ -1,14 +1,25 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Friendspasses</h1>
 
-<div id="friendspasses">
+<div id="friendspasses" class="mt-5">
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Twitter</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
   <% @friendspasses.each do |friendspass| %>
     <%= render friendspass %>
-    <p>
-      <%= link_to "Show this friendspass", friendspass %>
-    </p>
   <% end %>
+    </tbody>
+  </table>
 </div>
 
-<%= link_to "New friendspass", new_friendspass_path %>
+<%= link_to "New friendspass", new_friendspass_path, class:"btn btn-secondary" %>
