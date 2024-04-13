@@ -1,0 +1,70 @@
+class FriendspassesController < ApplicationController
+  before_action :set_friendspass, only: %i[ show edit update destroy ]
+
+  # GET /friendspasses or /friendspasses.json
+  def index
+    @friendspasses = Friendspass.all
+  end
+
+  # GET /friendspasses/1 or /friendspasses/1.json
+  def show
+  end
+
+  # GET /friendspasses/new
+  def new
+    @friendspass = Friendspass.new
+  end
+
+  # GET /friendspasses/1/edit
+  def edit
+  end
+
+  # POST /friendspasses or /friendspasses.json
+  def create
+    @friendspass = Friendspass.new(friendspass_params)
+
+    respond_to do |format|
+      if @friendspass.save
+        format.html { redirect_to friendspass_url(@friendspass), notice: "Friendspass was successfully created." }
+        format.json { render :show, status: :created, location: @friendspass }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @friendspass.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /friendspasses/1 or /friendspasses/1.json
+  def update
+    respond_to do |format|
+      if @friendspass.update(friendspass_params)
+        format.html { redirect_to friendspass_url(@friendspass), notice: "Friendspass was successfully updated." }
+        format.json { render :show, status: :ok, location: @friendspass }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @friendspass.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /friendspasses/1 or /friendspasses/1.json
+  def destroy
+    @friendspass.destroy
+
+    respond_to do |format|
+      format.html { redirect_to friendspasses_url, notice: "Friendspass was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_friendspass
+      @friendspass = Friendspass.find(params[:id])
+    end
+
+    # Only allow a list of trusted parameters through.
+    def friendspass_params
+      params.require(:friendspass).permit(:first_name, :last_name, :email, :phone, :twitter)
+    end
+end

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @friendspass %>
+
+<div>
+  <%= link_to "Edit this friendspass", edit_friendspass_path(@friendspass) %> |
+  <%= link_to "Back to friendspasses", friendspasses_path %>
+
+  <%= button_to "Destroy this friendspass", @friendspass, method: :delete %>
+</div>
