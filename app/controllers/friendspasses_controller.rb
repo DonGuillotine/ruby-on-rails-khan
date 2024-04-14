@@ -1,5 +1,7 @@
 class FriendspassesController < ApplicationController
   before_action :set_friendspass, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only:[:edit, :update, :destroy]
 
   # GET /friendspasses or /friendspasses.json
   def index
@@ -12,7 +14,8 @@ class FriendspassesController < ApplicationController
 
   # GET /friendspasses/new
   def new
-    @friendspass = Friendspass.new
+    # @friendspass = Friendspass.new
+    @friendspass = current_user.friendspass.build
   end
 
   # GET /friendspasses/1/edit
@@ -21,7 +24,8 @@ class FriendspassesController < ApplicationController
 
   # POST /friendspasses or /friendspasses.json
   def create
-    @friendspass = Friendspass.new(friendspass_params)
+    # @friendspass = Friendspass.new(friendspass_params)
+    @friendspass = current_user.friendspass.build(friendspass_params)
 
     respond_to do |format|
       if @friendspass.save
@@ -55,6 +59,11 @@ class FriendspassesController < ApplicationController
       format.html { redirect_to friendspasses_url, notice: "Friendspass was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def correct_user
+    @friendspass = current_user.friendspass.find_by(id: params[:id])
+    redirect_to friendspasses_path, notice: "Unauthorized Action detected" if @friendspass.nil?
   end
 
   private
