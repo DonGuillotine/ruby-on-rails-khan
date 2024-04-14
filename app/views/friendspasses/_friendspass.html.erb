@@ -1,11 +1,7 @@
 <tr id="<%= dom_id friendspass %>">
-  <td><%= friendspass.first_name %></td>
-  <td><%= friendspass.last_name %></td>
+  <td><%= link_to friendspass.first_name + ' ' + friendspass.last_name, friendspass %></td>
   <td><%= friendspass.email %></td>
   <td><%= friendspass.phone %></td>
   <td><%= friendspass.twitter %></td>
-  <td><%= friendspass.user_id %></td>
-  <td><%= link_to "Show", friendspass %></td>
-  <td><%= link_to "Edit", edit_friendspass_path(friendspass) %></td>
-  <td><%= link_to "Delete", @friendspass, method: :delete, data: {confirm: "Are you sure? "} %></td>
+  <td><%= button_to "Delete", friendspass, method: :delete, data: {confirm: "Are you sure? "}, class:"btn btn-outline-danger btn-sm" %></td>
 </tr>
