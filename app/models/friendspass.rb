@@ -1,0 +1,2 @@
+class Friendspass < ApplicationRecord
+end
